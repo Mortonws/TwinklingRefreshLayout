@@ -41,13 +41,9 @@ public class FoodActivity extends AppCompatActivity {
         rv.setAdapter(foodAdapter);
 
         final TwinklingRefreshLayout refreshLayout = (TwinklingRefreshLayout) findViewById(R.id.refresh);
-//        ProgressLayout headerView = new ProgressLayout(getContext());
         BezierLayout headerView = new BezierLayout(this);
         refreshLayout.setHeaderView(headerView);
-//        refreshLayout.setFloatRefresh(false);
         refreshLayout.setPureScrollModeOn();
-//        refreshLayout.setEnableOverlayRefreshView(false);
-//        refreshLayout.setAutoLoadMore(true);
 
         refreshCard();
 
@@ -65,9 +61,6 @@ public class FoodActivity extends AppCompatActivity {
 
     void loadMoreCard() {
         List<Food> foods = new ArrayList<>();
-//        foods.add(new Food(R.drawable.food3));
-//        foods.add(new Food(R.drawable.food2));
-//        foods.add(new Food(R.drawable.food1));
         foodAdapter.addItems(foods);
     }
 }

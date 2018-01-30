@@ -8,9 +8,6 @@ import android.view.View;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.utils.ScrollingUtil;
 
-/**
- * Created by lcodecore on 2017/3/1.
- */
 //TODO FullOverScrollDecorator、VerticalDecorator
 public class OverScrollDecorator extends Decorator {
 
@@ -94,10 +91,9 @@ public class OverScrollDecorator extends Decorator {
         }
     }
 
-    private Handler mHandler = new Handler() {
-
+    private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(Message msg) {
+        public boolean handleMessage(Message msg) {
             int mTouchSlop = cp.getTouchSlop();
             switch (msg.what) {
                 case MSG_START_COMPUTE_SCROLL:
@@ -131,6 +127,7 @@ public class OverScrollDecorator extends Decorator {
                     cur_delay_times = ALL_DELAY_TIMES;
                     break;
             }
+            return false;
         }
-    };
+    });
 }

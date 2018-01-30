@@ -54,6 +54,7 @@ public class TwinklingRefreshLayout extends RelativeLayout implements PullListen
     //整个头部
     private FrameLayout mExtraHeadLayout;
     //附加顶部高度
+    @SuppressWarnings("unused")
     private int mExHeadHeight = 0;
 
     private IHeaderView mHeadView;
@@ -131,10 +132,10 @@ public class TwinklingRefreshLayout extends RelativeLayout implements PullListen
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TwinklingRefreshLayout, defStyleAttr, 0);
         try {
-            mMaxHeadHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_max_head_height, (int) DensityUtil.dp2px(context, 120));
-            mHeadHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_head_height, (int) DensityUtil.dp2px(context, 80));
-            mMaxBottomHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_max_bottom_height, (int) DensityUtil.dp2px(context, 120));
-            mBottomHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_bottom_height, (int) DensityUtil.dp2px(context, 60));
+            mMaxHeadHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_max_head_height, DensityUtil.dp2px(context, 120));
+            mHeadHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_head_height, DensityUtil.dp2px(context, 80));
+            mMaxBottomHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_max_bottom_height, DensityUtil.dp2px(context, 120));
+            mBottomHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_bottom_height, DensityUtil.dp2px(context, 60));
             mOverScrollHeight = a.getDimensionPixelSize(R.styleable.TwinklingRefreshLayout_tr_overscroll_height, (int) mHeadHeight);
             enableRefresh = a.getBoolean(R.styleable.TwinklingRefreshLayout_tr_enable_refresh, true);
             enableLoadmore = a.getBoolean(R.styleable.TwinklingRefreshLayout_tr_enable_loadmore, true);
@@ -184,6 +185,7 @@ public class TwinklingRefreshLayout extends RelativeLayout implements PullListen
             if (!TextUtils.isEmpty(HEADER_CLASS_NAME)) {
                 try {
                     Class headClazz = Class.forName(HEADER_CLASS_NAME);
+                    //noinspection unchecked
                     Constructor ct = headClazz.getDeclaredConstructor(Context.class);
                     setHeaderView((IHeaderView) ct.newInstance(getContext()));
                 } catch (Exception e) {
@@ -209,6 +211,7 @@ public class TwinklingRefreshLayout extends RelativeLayout implements PullListen
             if (!TextUtils.isEmpty(FOOTER_CLASS_NAME)) {
                 try {
                     Class clazz = Class.forName(FOOTER_CLASS_NAME);
+                    //noinspection unchecked
                     Constructor ct = clazz.getDeclaredConstructor(Context.class);
                     setBottomView((IBottomView) ct.newInstance(getContext()));
                 } catch (Exception e) {
